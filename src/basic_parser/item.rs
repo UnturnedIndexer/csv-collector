@@ -65,11 +65,11 @@ impl Parser<Item> for Item {
             let mut split = line.split_whitespace();
 
             let field = split.next().unwrap_or("");
-            let value = split.next().unwrap_or("");
+            let remainder = split.remainder().unwrap_or("");
 
             match field {
-                "Name" => item.name = value.into(),
-                "Description" => item.description = value.into(),
+                "Name" => item.name = remainder.into(),
+                "Description" => item.description = remainder.into(),
                 _ => {}
             }
         }
