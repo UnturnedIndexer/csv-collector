@@ -12,4 +12,8 @@ pub struct Cli {
     /// Path to the output csv file
     #[arg(short, long, value_name = "FILE")]
     pub file: PathBuf,
+
+    /// Remove all duplicates
+    #[arg(short, long)]
+    pub dedup: bool,
 }

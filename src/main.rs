@@ -22,10 +22,21 @@ fn main() -> anyhow::Result<()> {
         .open(args.file)?;
     let mut writer = csv::Writer::from_writer(file);
 
+    let mut items: Vec<Item> = Vec::new();
+
     for path in paths {
         if let Ok(item) = Item::parse(path) {
-            writer.serialize(item)?;
+            items.push(item)
         }
+    }
+
+    items.sort_by(|a, b| a.id.partial_cmp(&b.id).unwrap());
+    if args.dedup {
+        items.dedup_by(|a, b| a.id == b.id);
+    }
+
+    for item in items {
+        writer.serialize(item)?;
     }
 
     Ok(())
