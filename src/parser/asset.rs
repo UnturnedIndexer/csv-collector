@@ -5,7 +5,7 @@ use anyhow::{anyhow, Context};
 use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Default, Deserialize, Serialize)]
-pub struct Item {
+pub struct Asset {
     pub name: String,
     pub description: String,
     pub guid: String,
@@ -15,10 +15,10 @@ pub struct Item {
     pub id: u16,
 }
 
-impl Parser<Item> for Item {
-    fn parse<P: Into<std::path::PathBuf>>(path: P) -> anyhow::Result<Item> {
+impl Parser<Asset> for Asset {
+    fn parse<P: Into<std::path::PathBuf>>(path: P) -> anyhow::Result<Asset> {
         let path: PathBuf = path.into();
-        let mut item = Item::default();
+        let mut item = Asset::default();
 
         let mut data_path = path.clone();
         let mut language_path = path.clone();

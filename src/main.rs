@@ -5,8 +5,8 @@ use std::path::Path;
 use clap::Parser as _;
 use cli::Cli;
 
-use csv_collector::basic_parser::item::Item;
-use csv_collector::basic_parser::Parser as _;
+use csv_collector::parser::Asset;
+use csv_collector::parser::Parser as _;
 
 use masterbundle_collector::masterbundle::MasterBundle;
 
@@ -22,10 +22,10 @@ fn main() -> anyhow::Result<()> {
         .open(args.file)?;
     let mut writer = csv::Writer::from_writer(file);
 
-    let mut items: Vec<Item> = Vec::new();
+    let mut items: Vec<Asset> = Vec::new();
 
     for path in paths {
-        if let Ok(item) = Item::parse(path) {
+        if let Ok(item) = Asset::parse(path) {
             items.push(item)
         }
     }
