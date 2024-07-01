@@ -8,7 +8,7 @@ use cli::Cli;
 use csv_collector::parser::Asset;
 use csv_collector::parser::Parser as _;
 
-use masterbundle_collector::masterbundle::MasterBundle;
+use masterbundle_collector::MasterBundle;
 
 fn main() -> anyhow::Result<()> {
     let args = Cli::parse();
